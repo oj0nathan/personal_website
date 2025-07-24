@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   Github,
   Linkedin,
-  Download,
   Mail,
   BookOpen,
   GraduationCap,
@@ -437,18 +436,6 @@ export default function Portfolio() {
                 </motion.span>
               </Link>
             </div>
-
-            <motion.div
-              className="overflow-hidden"
-              animate={{
-                opacity: 1,
-              }}
-            >
-              <Button className="w-full bg-[#1E40AF] hover:bg-[#1E3A8A] text-white font-semibold shadow-2xl hover:shadow-[#1E40AF]/25 transition-all duration-500 transform hover:scale-105 text-sm py-2 rounded-lg flex items-center justify-center gap-2">
-                <Download className="w-4 h-4 flex-shrink-0" />
-                <span className="whitespace-nowrap">Resume</span>
-              </Button>
-            </motion.div>
           </div>
         </SidebarBody>
       </Sidebar>
