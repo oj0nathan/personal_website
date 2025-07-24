@@ -1,0 +1,27 @@
+{
+  "name": "Jonathan Ho - Portfolio",
+  "short_name": "JH Portfolio",
+  "description": "Computer Science student at SMU passionate about quantitative finance, machine learning, and building innovative solutions",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1E40AF",
+  "background_color": "#0D1117",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
