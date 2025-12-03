@@ -73,6 +73,8 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-optical-sizing: auto;
+    /* Zoom out by 10% for better fit on laptops */
+    zoom: 0.9;
   }
   html {
     scroll-behavior: smooth;
