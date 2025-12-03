@@ -2,44 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Added CSS variables for aurora background */
+:root {
+  --dark-bg: #0d1117;
+  --transparent: transparent;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+  --indigo-300: #a5b4fc;
+  --violet-200: #ddd6fe;
+}
+
 @layer base {
   :root {
-    --background: 13 17 23;
-    --foreground: 255 255 255;
-    --card: 22 27 34;
-    --card-foreground: 255 255 255;
-    --popover: 22 27 34;
-    --popover-foreground: 255 255 255;
-    --primary: 30 64 175;
+    /* Light mode - Blue color scheme */
+    --background: 250 250 249;
+    --foreground: 41 37 36;
+    --card: 255 255 255;
+    --card-foreground: 41 37 36;
+    --popover: 255 255 255;
+    --popover-foreground: 41 37 36;
+    /* Primary blue color */
+    --primary: 37 99 235;
     --primary-foreground: 255 255 255;
-    --secondary: 255 255 255 / 0.05;
-    --secondary-foreground: 255 255 255;
-    --muted: 255 255 255 / 0.05;
-    --muted-foreground: 255 255 255 / 0.6;
-    --accent: 255 255 255 / 0.05;
-    --accent-foreground: 255 255 255;
-    --destructive: 59 130 246;
+    --secondary: 241 245 249;
+    --secondary-foreground: 41 37 36;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+    /* Accent now uses blue */
+    --accent: 239 246 255;
+    --accent-foreground: 30 64 175;
+    --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
-    --border: 255 255 255 / 0.1;
-    --input: 255 255 255 / 0.05;
-    --ring: 30 64 175;
-    --radius: 1rem;
-    --chart-1: 30 64 175;
-    --chart-2: 59 130 246;
-    --chart-3: 168 85 247;
-    --chart-4: 255 217 61;
-    --chart-5: 34 197 94;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 37 99 235;
+    --radius: 1.5rem;
+  }
 
-    /* Aurora Background Variables */
-    --dark-bg: rgba(13, 17, 23, 0.8);
-    --white: rgba(255, 255, 255, 0.1);
-    --black: rgba(0, 0, 0, 0.1);
-    --transparent: rgba(255, 255, 255, 0);
-    --blue-500: rgba(59, 130, 246, 0.2);
-    --indigo-300: rgba(165, 180, 252, 0.2);
-    --blue-300: rgba(147, 197, 253, 0.2);
-    --violet-200: rgba(196, 181, 253, 0.2);
-    --blue-400: rgba(96, 165, 250, 0.2);
+  .dark {
+    --background: 3 3 3;
+    --foreground: 248 250 252;
+    --card: 15 15 15;
+    --card-foreground: 248 250 252;
+    --popover: 15 15 15;
+    --popover-foreground: 248 250 252;
+    /* Primary blue for dark mode */
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 20 20 20;
+    --secondary-foreground: 248 250 252;
+    --muted: 20 20 20;
+    --muted-foreground: 148 163 184;
+    /* Accent uses blue in dark mode */
+    --accent: 30 58 138;
+    --accent-foreground: 191 219 254;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 38 38 38;
+    --input: 38 38 38;
+    --ring: 59 130 246;
   }
 }
 
@@ -52,73 +74,117 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     font-optical-sizing: auto;
   }
-}
-
-/* Premium animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  to {
+/* Bento card styles */
+.bento-card {
+  @apply relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-500;
+}
+
+.bento-card:hover {
+  @apply shadow-xl;
+  transform: translateY(-4px);
+  /* Blue border on hover */
+  border-color: rgb(var(--primary) / 0.3);
+}
+
+.dark .bento-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+}
+
+.bento-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Custom scrollbar - Blue theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--primary) / 0.5);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Disable transition for interactive elements during theme switch */
+button,
+a,
+input,
+textarea {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s
+    ease;
+}
+
+/* Icon styles */
+.bento-icon {
+  @apply w-8 h-8 text-primary mb-4;
+}
+
+/* Decorative elements */
+.decorative-dots {
+  @apply absolute top-4 right-4 flex gap-1.5;
+}
+
+.decorative-dot {
+  @apply w-3 h-3 rounded-full;
+}
+
+/* Link hover states - Blue */
+a:not(.bento-card):not(button) {
+  @apply transition-colors;
+}
+
+a:not(.bento-card):not(button):hover {
+  color: rgb(var(--primary));
+}
+
+/* Add meteor animation keyframes */
+@keyframes meteor-effect {
+  0% {
+    transform: rotate(215deg) translateX(0);
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-80px);
-  }
-  to {
+  70% {
     opacity: 1;
-    transform: translateX(0);
   }
-}
-
-@keyframes slide-in-right {
-  from {
+  100% {
+    transform: rotate(215deg) translateX(-500px);
     opacity: 0;
-    transform: translateX(80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 
-@keyframes glow-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 30px rgba(30, 64, 175, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 60px rgba(30, 64, 175, 0.5);
-  }
+.animate-meteor-effect {
+  animation: meteor-effect linear infinite;
 }
 
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Aurora Animation */
+/* Add aurora animation for contact page background */
 @keyframes aurora {
   from {
     background-position: 50% 50%, 50% 50%;
@@ -128,200 +194,6 @@
   }
 }
 
-.animate-float {
-  animation: float 10s ease-in-out infinite;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 1.2s ease-out;
-}
-
-.animate-slide-in-left {
-  animation: slide-in-left 1.2s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 1.2s ease-out;
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 4s ease-in-out infinite;
-}
-
-.animate-gradient-shift {
-  animation: gradient-shift 8s ease infinite;
-  background-size: 200% 200%;
-}
-
 .animate-aurora {
   animation: aurora 60s linear infinite;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0d1117;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(30, 64, 175, 0.3);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(30, 64, 175, 0.5);
-}
-
-/* Premium glass morphism */
-.backdrop-blur-xl {
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-
-.backdrop-blur-2xl {
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-}
-
-/* Enhanced focus states */
-input:focus,
-textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.3);
-}
-
-/* Button hover effects */
-button:hover {
-  transform: translateY(-2px);
-}
-
-/* Card hover effects */
-.card-hover:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 35px 70px -12px rgba(30, 64, 175, 0.25);
-}
-
-/* Typography enhancements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 900;
-  letter-spacing: -0.025em;
-}
-
-/* Gradient text effects */
-.gradient-text-primary {
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% 200%;
-}
-
-.gradient-text-secondary {
-  background: linear-gradient(135deg, #a855f7 0%, #1e40af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Terminal syntax highlighting */
-.terminal-command {
-  color: #1e40af;
-  font-weight: 600;
-}
-
-.terminal-success {
-  color: #1e40af;
-}
-
-.terminal-warning {
-  color: #ffd93d;
-}
-
-.terminal-error {
-  color: #3b82f6;
-}
-
-.terminal-info {
-  color: #a855f7;
-}
-
-/* Subtle animations for interactive elements */
-.interactive-element {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.interactive-element:hover {
-  transform: translateY(-4px) scale(1.02);
-}
-
-/* Premium shadows */
-.shadow-premium {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-.shadow-premium-hover {
-  box-shadow: 0 35px 70px -12px rgba(30, 64, 175, 0.25), 0 0 0 1px rgba(30, 64, 175, 0.1);
-}
-
-/* Consistent border radius */
-.rounded-premium {
-  border-radius: 1.5rem;
-}
-
-.rounded-premium-lg {
-  border-radius: 2rem;
-}
-
-/* Color system for finance blue theme */
-.text-finance-blue {
-  color: #1e40af;
-}
-
-.text-finance-blue-light {
-  color: #3b82f6;
-}
-
-.text-finance-purple {
-  color: #a855f7;
-}
-
-.text-finance-yellow {
-  color: #ffd93d;
-}
-
-.bg-finance-blue {
-  background-color: rgba(30, 64, 175, 0.1);
-}
-
-.bg-finance-blue-light {
-  background-color: rgba(59, 130, 246, 0.1);
-}
-
-.bg-finance-purple {
-  background-color: rgba(168, 85, 247, 0.1);
-}
-
-.border-finance-blue {
-  border-color: rgba(30, 64, 175, 0.3);
-}
-
-.border-finance-blue-light {
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.border-finance-purple {
-  border-color: rgba(168, 85, 247, 0.3);
 }
