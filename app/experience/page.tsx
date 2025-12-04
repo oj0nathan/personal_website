@@ -78,8 +78,8 @@ export default function ExperiencePage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-2 w-fit">
-              <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 w-full sm:w-fit">
+              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-1.png"
                   alt="WhiteCoat team photo 1"
@@ -88,7 +88,7 @@ export default function ExperiencePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-2.png"
                   alt="WhiteCoat team photo 2"
@@ -97,7 +97,7 @@ export default function ExperiencePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-3.png"
                   alt="WhiteCoat team photo 3"
@@ -106,7 +106,7 @@ export default function ExperiencePage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-4.png"
                   alt="WhiteCoat team photo 4"
@@ -151,8 +151,8 @@ export default function ExperiencePage() {
             ))}
           </div>
 
-          <div className="flex gap-2 pt-2 flex-wrap">
-            <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+          <div className="grid grid-cols-1 sm:flex sm:flex-row gap-2 pt-2">
+            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
               <Image
                 src="/images/smu-1.png"
                 alt="SMU classroom with code"
@@ -161,7 +161,7 @@ export default function ExperiencePage() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
               <Image
                 src="/images/smu-2.png"
                 alt="SMU WorkWell presentation"
@@ -170,7 +170,7 @@ export default function ExperiencePage() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
               <Image
                 src="/images/smu-3.png"
                 alt="SMU classroom group"
