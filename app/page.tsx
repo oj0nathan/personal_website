@@ -103,7 +103,7 @@ export default function Home() {
                   <Meteors number={15} />
                   <div className="absolute bottom-4 right-4 w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden opacity-60 group-hover:opacity-100 transition-opacity">
                     <Image
-                      src="/images/image.png"
+                      src="/images/about-avatar.png"
                       alt="Avatar"
                       width={96}
                       height={96}
