@@ -14,6 +14,7 @@ const projects = [
     link: "https://medium.com/@johoblogs",
     linkText: "Read Articles",
     isWip: false,
+    isInternal: false,
   },
   {
     title: "Book Review Library",
@@ -22,14 +23,17 @@ const projects = [
     link: "https://joholibrary.notion.site/Jonathan-s-Library-92e916b037f14ed38b8663a79aa3e6f6?pvs=74",
     linkText: "Explore Library",
     isWip: false,
+    isInternal: false,
   },
   {
     title: "Factor Modelling",
-    description: "Exploring multi-factor models for portfolio construction and risk analysis.",
+    description:
+      "Building a macro factor model for sector rotation and SPY timing using rolling OLS, trend filters, and risk-aware portfolio construction.",
     image: "/factor-model-quantitative-finance-charts-dark-them.jpg",
-    link: "#",
-    linkText: "Work in Progress",
-    isWip: true,
+    link: "/projects/factor-modelling",
+    linkText: "View Project",
+    isWip: false,
+    isInternal: true,
   },
   {
     title: "Detecting Regime Shifts",
@@ -38,6 +42,7 @@ const projects = [
     link: "#",
     linkText: "Work in Progress",
     isWip: true,
+    isInternal: false,
   },
 ]
 
@@ -109,6 +114,7 @@ export default function ProjectsPage() {
               linkText={project.linkText}
               index={index}
               isWip={project.isWip}
+              isInternal={project.isInternal}
             />
           ))}
         </div>
