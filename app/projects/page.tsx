@@ -37,12 +37,13 @@ const projects = [
   },
   {
     title: "Detecting Regime Shifts",
-    description: "Statistical methods for identifying market regime changes and transitions.",
-    image: "/regime-shift-detection-time-series-analysis-dark-t.jpg",
-    link: "#",
-    linkText: "Work in Progress",
-    isWip: true,
-    isInternal: false,
+    description:
+      "End-to-end regime-switching model using Hidden Markov Models to learn 4 macro regimes from US growth and inflation for multi-asset allocation.",
+    image: "/images/regime-shift-thumbnail.png",
+    link: "/projects/regime-detection",
+    linkText: "View Project",
+    isWip: false,
+    isInternal: true,
   },
 ]
 
