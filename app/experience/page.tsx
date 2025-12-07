@@ -85,7 +85,7 @@ export default function ExperiencePage() {
                   alt="WhiteCoat team photo 1"
                   width={192}
                   height={128}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
@@ -94,7 +94,7 @@ export default function ExperiencePage() {
                   alt="WhiteCoat team photo 2"
                   width={192}
                   height={128}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
@@ -103,7 +103,7 @@ export default function ExperiencePage() {
                   alt="WhiteCoat team photo 3"
                   width={192}
                   height={128}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
@@ -112,7 +112,7 @@ export default function ExperiencePage() {
                   alt="WhiteCoat team photo 4"
                   width={192}
                   height={128}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
