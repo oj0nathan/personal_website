@@ -79,40 +79,40 @@ export default function ExperiencePage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 w-full sm:w-fit">
-              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-1.png"
                   alt="WhiteCoat team photo 1"
                   width={192}
-                  height={128}
-                  className="w-full h-full object-cover object-top"
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
                 />
               </div>
-              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-2.png"
                   alt="WhiteCoat team photo 2"
                   width={192}
-                  height={128}
-                  className="w-full h-full object-cover object-top"
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
                 />
               </div>
-              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-3.png"
                   alt="WhiteCoat team photo 3"
                   width={192}
-                  height={128}
-                  className="w-full h-full object-cover object-top"
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
                 />
               </div>
-              <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
                 <Image
                   src="/images/whitecoat-4.png"
                   alt="WhiteCoat team photo 4"
                   width={192}
-                  height={128}
-                  className="w-full h-full object-cover object-top"
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
                 />
               </div>
             </div>
