@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowRight, ExternalLink, ChevronRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, ChevronRight, Play } from "lucide-react"
 import { motion } from "framer-motion"
 import { BackgroundPaths } from "@/components/ui/background-paths"
 
@@ -157,6 +157,15 @@ export default function FactorModellingPage() {
             >
               View code on GitHub
               <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://macrofactormodel-jgyasucg3xtuzkkh44svek.streamlit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors text-sm"
+            >
+              Live Dashboard
+              <Play className="w-4 h-4" />
             </a>
           </motion.div>
 
@@ -492,6 +501,15 @@ export default function FactorModellingPage() {
             >
               Browse the code on GitHub
               <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="https://macrofactormodel-jgyasucg3xtuzkkh44svek.streamlit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
+            >
+              Explore the live dashboard
+              <Play className="w-4 h-4" />
             </a>
           </div>
         </motion.section>

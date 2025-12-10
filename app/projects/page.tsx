@@ -45,6 +45,16 @@ const projects = [
     isWip: false,
     isInternal: true,
   },
+  {
+    title: "Risk-Conditioned Allocator",
+    description:
+      "Dynamic risk-budgeting framework routing capital between trend following, mean reversion and cash using volatility, autocorrelation and VaR overlays.",
+    image: "/images/risk-allocator-thumbnail.png",
+    link: "/projects/risk-conditioned",
+    linkText: "View Project",
+    isWip: false,
+    isInternal: true,
+  },
 ]
 
 export default function ProjectsPage() {

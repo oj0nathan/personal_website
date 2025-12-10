@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowRight, ExternalLink, ChevronRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, ChevronRight, Play } from "lucide-react"
 import { motion } from "framer-motion"
 import { BackgroundPaths } from "@/components/ui/background-paths"
 
@@ -175,6 +175,15 @@ export default function RegimeDetectionPage() {
             >
               View Code
               <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://macroregimeswitchingmodel-rzlhm7tgpmfxv2f5umjsak.streamlit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors"
+            >
+              Live Dashboard
+              <Play className="w-4 h-4" />
             </a>
           </motion.div>
 
