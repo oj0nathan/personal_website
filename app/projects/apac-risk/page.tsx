@@ -97,13 +97,13 @@ export default function ApacRiskPage() {
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://globalriskdashboard-6ayjee9rkarokethyhdwsz.streamlit.app/"
+              href="https://johoblogs.medium.com/stop-predicting-start-measuring-risk-02588f78221d"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-colors"
             >
-              Live Dashboard
-              <Play className="w-4 h-4" />
+              Read Article
+              <ExternalLink className="w-4 h-4" />
             </a>
             <a
               href="https://github.com/oj0nathan/global_risk_dashboard"
@@ -113,6 +113,15 @@ export default function ApacRiskPage() {
             >
               View Code
               <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://globalriskdashboard-6ayjee9rkarokethyhdwsz.streamlit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors"
+            >
+              Live Dashboard
+              <Play className="w-4 h-4" />
             </a>
           </div>
         </motion.header>
@@ -332,15 +341,15 @@ export default function ApacRiskPage() {
             <Button
               asChild
               size="lg"
-              className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30"
+              className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/30"
             >
               <a
-                href="https://globalriskdashboard-6ayjee9rkarokethyhdwsz.streamlit.app/"
+                href="https://johoblogs.medium.com/stop-predicting-start-measuring-risk-02588f78221d"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Play className="w-4 h-4 mr-2" />
-                Explore Dashboard
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Read Article
               </a>
             </Button>
             <Button
@@ -352,6 +361,20 @@ export default function ApacRiskPage() {
               <a href="https://github.com/oj0nathan/global_risk_dashboard" target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4 mr-2" />
                 View Code
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30"
+            >
+              <a
+                href="https://globalriskdashboard-6ayjee9rkarokethyhdwsz.streamlit.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Explore Dashboard
               </a>
             </Button>
             <Button
