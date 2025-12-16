@@ -12,41 +12,41 @@
   --violet-200: #ddd6fe;
 }
 
-/* Light mode shadcn design tokens */
+/* Dark mode shadcn design tokens - Overriding light mode to force dark mode */
 :root {
-  --background: hsl(250 250 249);
-  --foreground: hsl(41 37 36);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(41 37 36);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(41 37 36);
-  --primary: hsl(221 83% 53%);
+  --background: hsl(0 0% 1%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(0 0% 6%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(0 0% 6%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(217 91% 60%);
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 40% 96%);
-  --secondary-foreground: hsl(41 37 36);
-  --muted: hsl(210 40% 96%);
-  --muted-foreground: hsl(215 16% 47%);
-  --accent: hsl(214 100% 97%);
-  --accent-foreground: hsl(224 76% 40%);
+  --secondary: hsl(0 0% 8%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(0 0% 8%);
+  --muted-foreground: hsl(215 20% 65%);
+  --accent: hsl(224 76% 27%);
+  --accent-foreground: hsl(213 97% 87%);
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(214 32% 91%);
-  --input: hsl(214 32% 91%);
-  --ring: hsl(221 83% 53%);
+  --border: hsl(0 0% 15%);
+  --input: hsl(0 0% 15%);
+  --ring: hsl(217 91% 60%);
   --radius: 1.5rem;
-  --chart-1: hsl(221 83% 53%);
+  --chart-1: hsl(220 70% 50%);
   --chart-2: hsl(160 60% 45%);
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
-  --sidebar-background: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(221 83% 53%);
+  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(217 91% 60%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(221 83% 53%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217 91% 60%);
 }
 
 /* Dark mode shadcn design tokens */
