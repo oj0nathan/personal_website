@@ -26,11 +26,11 @@ const projects = [
     isInternal: false,
   },
   {
-    title: "Factor Modelling",
+    title: "APAC Multi-Asset Risk Decomposition",
     description:
-      "Building a macro factor model for sector rotation and SPY timing using rolling OLS, trend filters, and risk-aware portfolio construction.",
-    image: "/factor-model-quantitative-finance-charts-dark-them.jpg",
-    link: "/projects/factor-modelling",
+      "Building an institutional-grade risk engine to decompose portfolio variance into systematic and idiosyncratic components using Ridge Regression for stable factor attributions.",
+    image: "/images/apac-risk-thumbnail.jpg",
+    link: "/projects/apac-risk",
     linkText: "View Project",
     isWip: false,
     isInternal: true,
