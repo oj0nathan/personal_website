@@ -55,11 +55,11 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         </div>
 
         {/* Card Content Section */}
-        <div className="flex flex-1 flex-col p-6">
+        <div className="flex flex-1 flex-col p-6 min-h-[180px]">
           <h3 className="text-xl font-serif font-semibold transition-colors duration-300 group-hover:text-blue-400">
             {title}
           </h3>
-          <p className="mt-3 flex-1 text-white/50 leading-relaxed">{description}</p>
+          <p className="mt-3 flex-1 text-white/50 leading-relaxed text-sm">{description}</p>
 
           {/* Card Link/CTA - Show different style for WIP */}
           {isWip ? (

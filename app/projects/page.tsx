@@ -19,11 +19,21 @@ const projects = [
   {
     title: "Book Review Library",
     description: "Comprehensive reviews from my reading journey with key takeaways.",
-    image: "/images/bookshelf.png",
+    image: "/images/book-morals-history.png",
     link: "https://joholibrary.notion.site/Jonathan-s-Library-92e916b037f14ed38b8663a79aa3e6f6?pvs=74",
     linkText: "Explore Library",
     isWip: false,
     isInternal: false,
+  },
+  {
+    title: "Macro Intelligence Dashboard",
+    description:
+      "A cloud-hosted macro monitoring system built to replace expensive terminal workflows with automated data pipelines, Postgres storage, and Grafana analytics.",
+    image: "/images/bloomberg-terminal.png",
+    link: "/projects/macro-dashboard",
+    linkText: "View Project",
+    isWip: false,
+    isInternal: true,
   },
   {
     title: "APAC Multi-Asset Risk Decomposition",
