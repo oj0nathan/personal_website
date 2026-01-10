@@ -170,6 +170,7 @@ export default function MacroDashboardPage() {
           </div>
         </motion.section>
 
+        {/* Key Visuals */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,8 +180,8 @@ export default function MacroDashboardPage() {
           <h2 className="text-3xl md:text-4xl font-serif text-white mb-6 tracking-tight">Key Visuals</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-transparent mb-8" />
 
-          {/* ERD Diagram */}
-          <div className="mb-8">
+          {/* ERD Diagram - Full Width */}
+          <div className="mb-12">
             <div className="relative rounded-lg overflow-hidden border border-white/10 bg-white">
               <Image
                 src="/images/macro-erd-diagram.png"
@@ -190,49 +191,52 @@ export default function MacroDashboardPage() {
                 className="w-full h-auto"
               />
             </div>
-            <p className="text-sm text-white/50 italic mt-4">
+            <p className="text-sm text-white/50 italic mt-4 leading-relaxed">
               Modular database schema with separate tables for CPI, Credit, Rates, and Growth series
             </p>
           </div>
 
-          {/* Dashboard Screenshots Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="relative rounded-lg overflow-hidden border border-white/10">
-              <Image
-                src="/images/rates-dashboard.png"
-                alt="Rates dashboard showing yield curves and Treasury data"
-                width={800}
-                height={600}
-                className="w-full h-auto"
-              />
-              <p className="text-sm text-white/50 italic mt-4">
+          {/* Dashboard Screenshots - 3 columns */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col">
+              <div className="relative h-[400px] rounded-lg overflow-hidden border border-white/10 mb-4">
+                <Image
+                  src="/images/credit-dashboard.png"
+                  alt="Credit dashboard with spreads and bond metrics"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-sm text-white/50 italic leading-relaxed">
+                Credit dashboard displaying IG-HY spreads, issuance data, and corporate bond metrics
+              </p>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="relative h-[400px] rounded-lg overflow-hidden border border-white/10 mb-4">
+                <Image
+                  src="/images/rates-dashboard.png"
+                  alt="Rates dashboard showing yield curves and Treasury data"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-sm text-white/50 italic leading-relaxed">
                 Rates dashboard with Treasury curves, decomposition, and curve regime indicators
               </p>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden border border-white/10">
-              <Image
-                src="/images/growth-dashboard.png"
-                alt="Growth dashboard with employment and GDP metrics"
-                width={800}
-                height={600}
-                className="w-full h-auto"
-              />
-              <p className="text-sm text-white/50 italic mt-4">
+            <div className="flex flex-col">
+              <div className="relative h-[400px] rounded-lg overflow-hidden border border-white/10 mb-4">
+                <Image
+                  src="/images/growth-dashboard.png"
+                  alt="Growth dashboard with employment and GDP metrics"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-sm text-white/50 italic leading-relaxed">
                 Growth dashboard tracking employment, GDP components, and leading indicators
-              </p>
-            </div>
-
-            <div className="relative rounded-lg overflow-hidden border border-white/10 md:col-span-2">
-              <Image
-                src="/images/credit-dashboard.png"
-                alt="Credit dashboard with spreads and bond metrics"
-                width={1200}
-                height={600}
-                className="w-full h-auto"
-              />
-              <p className="text-sm text-white/50 italic mt-4">
-                Credit dashboard displaying IG-HY spreads, issuance data, and corporate bond metrics
               </p>
             </div>
           </div>
