@@ -22,6 +22,96 @@ export default function ExperiencePage() {
 
   const timelineData = [
     {
+      title: "2026",
+      content: (
+        <div className="space-y-6">
+          {/* Capital Group */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
+                <Image
+                  src="/images/capital-group-logo.png"
+                  alt="Capital Group"
+                  width={48}
+                  height={48}
+                  className="object-contain p-1"
+                />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-white">Capital Group</h2>
+              </div>
+            </div>
+
+            <div className="text-white/80 font-medium">Asset Management Summer Associate | May 2026 - July 2026</div>
+
+            <p className="text-white/60 leading-relaxed text-sm">
+              Since 1931, Capital Group has been dedicated to improving people&apos;s lives through successful
+              investing. Capital Group&apos;s commitment to that mission has fostered lasting relationships with
+              investors and financial intermediaries built on trust, integrity, excellent service and investment
+              results. Today, Capital Group manages over $3.2 trillion in assets, with more than 9,000 associates
+              working across 33 offices around the world, making it one of the world&apos;s largest active investment
+              managers.
+            </p>
+
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-white/60 text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                <span>
+                  Analyzed cross-border fund registration and share-class structures for Luxembourg-domiciled funds,
+                  building an automated compliance dashboard in Power BI to reconcile registration policies against
+                  live system data and flag regulatory exceptions
+                </span>
+              </li>
+              <li className="flex items-start gap-3 text-white/60 text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                <span>
+                  Built a Python-based OCR and regex extraction tool to parse financial regulatory documents,
+                  accelerating share-class competitive analysis and supporting new fund product launches
+                </span>
+              </li>
+              <li className="flex items-start gap-3 text-white/60 text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                <span>
+                  Standardized institutional workflows for global share-class launches and vendor data management,
+                  streamlining time-to-market for new fund products
+                </span>
+              </li>
+            </ul>
+
+            <div className="grid grid-cols-1 sm:flex sm:flex-row gap-2 pt-2">
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+                <Image
+                  src="/images/capital-1.png"
+                  alt="Capital Group team photo 1"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
+                />
+              </div>
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+                <Image
+                  src="/images/capital-2.png"
+                  alt="Capital Group team photo 2"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
+                />
+              </div>
+              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
+                <Image
+                  src="/images/capital-3.png"
+                  alt="Capital Group team photo 3"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover object-[center_30%]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
       title: "2025",
       content: (
         <div className="space-y-6">
@@ -66,17 +156,6 @@ export default function ExperiencePage() {
                 <span>Applied AI and prompt engineering techniques to optimize workflows</span>
               </li>
             </ul>
-
-            <div className="flex flex-wrap gap-2">
-              {["Data Analytics", "NLP & AI", "Product Testing"].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 w-full sm:w-fit">
               <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
@@ -129,27 +208,16 @@ export default function ExperiencePage() {
               <Image src="/images/smu-logo.png" alt="SMU" width={48} height={48} className="object-contain p-1" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white">SMU Computer Science</h2>
+              <h2 className="text-xl font-bold text-white">SMU Information Systems</h2>
             </div>
           </div>
 
           <div className="text-white/80 font-medium">Bachelor's Degree | 2025 - 2029</div>
 
           <p className="text-white/60 leading-relaxed text-sm">
-            Pursuing Computer Science at Singapore Management University with a focus on Artificial Intelligence.
-            Exploring the intersection of technology and human intelligence while building practical AI solutions.
+            Pursuing Information Systems at Singapore Management University, majoring in Financial Technology.
+            Exploring the intersection of finance and technology through financial markets.
           </p>
-
-          <div className="flex flex-wrap gap-2">
-            {["Linear Algebra", "Discrete Mathematics", "Python", "C Programming", "SQL"].map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
 
           <div className="grid grid-cols-1 sm:flex sm:flex-row gap-2 pt-2">
             <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
