@@ -21,15 +21,6 @@ export default function AboutPage() {
     }),
   }
 
-  const skills = [
-    "Python",
-    "SQL",
-    "Statistical Analysis",
-    "Data Analysis",
-    "Machine Learning",
-    "Natural Language Processing",
-  ]
-
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#030303]">
       {/* Background gradient */}
@@ -98,38 +89,71 @@ export default function AboutPage() {
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
-            className="flex gap-4 md:gap-5 justify-center md:justify-end items-end"
+            className="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-end items-end"
           >
-            {/* Photo 1 - Mirror selfie */}
+            {/* Photo 1 - Running */}
             <motion.div
-              className="relative w-28 h-36 md:w-36 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/images/image-me.webp"
-                alt="Jonathan - casual selfie"
-                fill
-                className="object-cover object-top"
-              />
-            </motion.div>
-
-            {/* Photo 2 - Sitting pose */}
-            <motion.div
-              className="relative w-28 h-36 md:w-36 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl mb-8"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image src="/images/image-me-2.webp" alt="Jonathan - 2025" fill className="object-cover object-top" />
-            </motion.div>
-
-            {/* Photo 3 - Running (bigger) */}
-            <motion.div
-              className="relative w-36 h-52 md:w-44 md:h-64 rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-xl shadow-blue-500/10"
+              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-xl shadow-blue-500/10"
               whileHover={{ scale: 1.05, rotate: -1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Image src="/images/image-me-3.webp" alt="Jonathan - running" fill className="object-cover object-top" />
+            </motion.div>
+
+            {/* Photo 2 - Reading */}
+            <motion.div
+              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="/images/about-reading.png"
+                alt="Jonathan - reading a book"
+                fill
+                className="object-cover object-[center_55%]"
+              />
+            </motion.div>
+
+            {/* Photo 3 - Presenting */}
+            <motion.div
+              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="/images/about-presenting.png"
+                alt="Jonathan - presenting"
+                fill
+                className="object-cover object-[center_65%]"
+              />
+            </motion.div>
+
+            {/* Photo 4 - Fitness competition */}
+            <motion.div
+              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="/images/about-fitness.png"
+                alt="Jonathan - fitness competition"
+                fill
+                className="object-cover object-[center_35%]"
+              />
+            </motion.div>
+
+            {/* Photo 5 - Cradle Mountain */}
+            <motion.div
+              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
+              whileHover={{ scale: 1.05, rotate: -1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="/images/about-mountain.png"
+                alt="Jonathan - Cradle Mountain"
+                fill
+                className="object-cover object-[30%_70%]"
+              />
             </motion.div>
           </motion.div>
         </header>
@@ -139,46 +163,51 @@ export default function AboutPage() {
           {/* Paragraph 1 - Education & Interests */}
           <motion.section custom={4} variants={fadeUpVariants} initial="hidden" animate="visible">
             <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              I am currently a freshman at{" "}
+              I am studying Information Systems at{" "}
               <AnimatedHighlight color="blue" delay={0.2}>
                 Singapore Management University (SMU)
               </AnimatedHighlight>
-              , studying in the School of Computing and Information Systems. Since my National Service days, I have been
-              drawn to{" "}
+              , with a specialization in Financial Technology. Since my National Service days, I have been drawn to{" "}
               <AnimatedBoxHighlight color="red" delay={0.4}>
-                quantitative finance
-              </AnimatedBoxHighlight>
-              ,{" "}
+                financial markets
+              </AnimatedBoxHighlight>{" "}
+              and{" "}
               <AnimatedBoxHighlight color="red" delay={0.6}>
-                econometrics
-              </AnimatedBoxHighlight>
-              , and anything that involves data, numbers, and patterns. I enjoy{" "}
-              <AnimatedHighlight color="cyan" delay={0.8}>
-                building statistical models
-              </AnimatedHighlight>{" "}
-              and applying{" "}
-              <AnimatedHighlight color="cyan" delay={1.0}>
-                machine learning techniques
-              </AnimatedHighlight>{" "}
-              to real-world problems, especially when they are grounded in solid data and evidence from the financial
-              world.
+                macro research
+              </AnimatedBoxHighlight>{" "}
+              where global events, policy shifts, and capital flows connect and play out over time.
             </p>
           </motion.section>
 
-          {/* Paragraph 2 - Personal Interests */}
+          {/* Paragraph 2 - Technical Foundation */}
           <motion.section custom={5} variants={fadeUpVariants} initial="hidden" animate="visible">
             <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              Outside of school, you will often find me running, in the gym working on strength training, or just taking
-              some time to clear my head through exercise. I also have a growing interest in philosophy, particularly
-              theology and existential questions about meaning and purpose. On top of that, I spend a lot of time
-              reading about global affairs, whether in economics or geopolitics, and turning those ideas into writing.
-              Sometimes that looks like longer reflections on Medium, other times it is more structured book reviews on
-              Notion. Writing helps me organise my thoughts and see what I truly understand.
+              Alongside that, I have a strong technical foundation across both{" "}
+              <AnimatedBoxHighlight color="red" delay={0.8}>
+                hardware
+              </AnimatedBoxHighlight>{" "}
+              and{" "}
+              <AnimatedBoxHighlight color="red" delay={1.0}>
+                software equities
+              </AnimatedBoxHighlight>
+              , and I have a solid grasp of statistical models and machine learning techniques and how they apply to
+              real-world problems, especially when grounded in solid data and evidence.
             </p>
           </motion.section>
 
-          {/* Paragraph 3 - Teaching & Sharing */}
+          {/* Paragraph 3 - Personal Interests */}
           <motion.section custom={6} variants={fadeUpVariants} initial="hidden" animate="visible">
+            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
+              Outside of school, you will often find me running, in the gym working on strength training, or just
+              taking some time to clear my head through exercise. I also spend a lot of time reading, whether it&apos;s
+              biographies, economics, geopolitics, or philosophy, and turning those ideas into writing. Sometimes that
+              looks like longer reflections on Medium, other times it is more structured book reviews on Notion.
+              Writing helps me organise my thoughts and see what I truly understand.
+            </p>
+          </motion.section>
+
+          {/* Paragraph 4 - Teaching & Sharing */}
+          <motion.section custom={7} variants={fadeUpVariants} initial="hidden" animate="visible">
             <p className="text-white/70 leading-relaxed text-lg md:text-xl">
               I really enjoy <span className="text-white font-semibold">sharing what I learn with others</span>,
               especially topics that might seem intimidating at first. This began back in Junior College, where I
@@ -187,36 +216,12 @@ export default function AboutPage() {
             </p>
           </motion.section>
 
-          {/* Paragraph 4 - Call to Action */}
-          <motion.section custom={7} variants={fadeUpVariants} initial="hidden" animate="visible">
+          {/* Paragraph 5 - Call to Action */}
+          <motion.section custom={8} variants={fadeUpVariants} initial="hidden" animate="visible">
             <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              I would love to connect and have a conversation about your ideas, whether they are related to finance,
-              tech, philosophy, or anything in between.
+              Feel free to connect and have a conversation about your ideas, whether they are related to finance, tech,
+              markets, or anything in between.
             </p>
-          </motion.section>
-
-          {/* Skills & Technologies */}
-          <motion.section
-            custom={8}
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            className="pt-8 border-t border-white/[0.08]"
-          >
-            <h2 className="text-2xl font-serif text-white mb-6">Skills & Technologies</h2>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="px-4 py-2 rounded-full bg-blue-500/10 text-blue-300 text-sm border border-blue-500/20 hover:bg-blue-500/20 hover:scale-105 transition-all cursor-default"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
           </motion.section>
         </div>
       </div>

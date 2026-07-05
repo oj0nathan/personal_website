@@ -103,7 +103,7 @@ export default function ExperiencePage() {
                   alt="Capital Group team photo 3"
                   width={192}
                   height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
+                  className="w-full h-full object-cover object-[center_72%]"
                 />
               </div>
             </div>
