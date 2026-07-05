@@ -26,6 +26,16 @@ const projects = [
     isInternal: false,
   },
   {
+    title: "Thematic Hardware Primer",
+    description:
+      "A primer built for anyone who wants to understand the physical infrastructure behind the AI trade. I go from first principles to supply chain, covering the full stack — semiconductors, lithography, memory, optics, power and grid, and humanoid robots.",
+    image: "/images/hardware-primer-thumbnail.png",
+    link: "/projects/hardware-primer",
+    linkText: "View Project",
+    isWip: false,
+    isInternal: true,
+  },
+  {
     title: "Macro Intelligence Dashboard",
     description:
       "A cloud-hosted macro monitoring system built to replace expensive terminal workflows with automated data pipelines, Postgres storage, and Grafana analytics.",
