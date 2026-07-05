@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Bind the dark: variant to the .dark class (always set on <html>) instead of the visitor's OS color scheme */
+@custom-variant dark (&:is(.dark *));
+
 /* Custom CSS variables for aurora background */
 :root {
   --dark-bg: #0d1117;
