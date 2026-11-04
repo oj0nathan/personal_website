@@ -10,6 +10,16 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams"
 import { GridGlow } from "@/components/ui/grid-glow"
 import { Sparkles } from "@/components/ui/sparkles"
 import { InteractiveRobot } from "@/components/ui/interactive-robot"
+import DoodleCrewFooter, { type CrewMember } from "@/components/ui/doodle-crew-footer"
+
+// Labubus hanging around the letters of J-O-N-A-T-H-A-N (index = letter).
+const LABUBU_CREW: CrewMember[] = [
+  { kind: "labubu", letter: 0, seat: "front", offset: -0.55, color: "#6b4a3a", name: "Choco", says: "Welcome to Jonathan's corner." },
+  { kind: "labubu", letter: 1, seat: "top", offset: 0, scale: 0.8, color: "#3f4a5c", name: "Slate", says: "Best seat in the house." },
+  { kind: "labubu", letter: 3, seat: "behind", scale: 0.9, color: "#5c5f66", name: "Pebble", says: "Psst… check out the projects." },
+  { kind: "labubu", letter: 4, seat: "top", offset: 0, scale: 0.85, flip: true, color: "#5a6340", name: "Moss", says: "Up here. Great view." },
+  { kind: "labubu", letter: 7, seat: "front", offset: 0.5, flip: true, color: "#2f3b52", name: "Navy", says: "Connect on LinkedIn." },
+]
 
 export default function Home() {
   const fadeUpVariants = {
@@ -81,12 +91,19 @@ export default function Home() {
             <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif mb-4 tracking-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">Hey, I'm</span>
-                <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500">
-                  Jonathan
-                </span>
+                <span className="sr-only"> Jonathan</span>
               </h1>
             </motion.div>
+            <div className="mx-auto w-full max-w-4xl">
+              <DoodleCrewFooter
+                variant="wordmark"
+                wordmark="Jonathan"
+                crew={LABUBU_CREW}
+                doodles={["bolt", "flame", "star", "plane", "bolt", "flame"]}
+                doodleCount={10}
+                palette={{ background: "#030303", ink: "#93c5fd", accent: "#60a5fa" }}
+              />
+            </div>
           </header>
 
           {/* Animated Bento Grid */}
