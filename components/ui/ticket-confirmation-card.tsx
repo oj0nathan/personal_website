@@ -17,40 +17,6 @@ const CheckCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const DashedLine = () => <div className="w-full border-t-2 border-dashed border-white/10" aria-hidden="true" />
 
-const Barcode = ({ value }: { value: string }) => {
-  const hashCode = (s: string) =>
-    s.split("").reduce((a, b) => {
-      a = (a << 5) - a + b.charCodeAt(0)
-      return a & a
-    }, 0)
-  const seed = hashCode(value)
-  const random = (s: number) => {
-    const x = Math.sin(s) * 10000
-    return x - Math.floor(x)
-  }
-
-  const bars = Array.from({ length: 60 }).map((_, index) => ({ width: random(seed + index) > 0.7 ? 2.5 : 1.5 }))
-
-  const spacing = 1.5
-  const totalWidth = bars.reduce((acc, bar) => acc + bar.width + spacing, 0) - spacing
-  const svgWidth = 250
-  const svgHeight = 70
-  let currentX = (svgWidth - totalWidth) / 2
-
-  return (
-    <div className="flex flex-col items-center py-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} aria-label={`Barcode for value ${value}`} className="max-w-full fill-current text-white/85">
-        {bars.map((bar, index) => {
-          const x = currentX
-          currentX += bar.width + spacing
-          return <rect key={index} x={x} y="10" width={bar.width} height="50" />
-        })}
-      </svg>
-      <p className="mt-2 text-sm tracking-[0.3em] text-white/45">{value}</p>
-    </div>
-  )
-}
-
 const CONFETTI_COLORS = ["#ef4444", "#3b82f6", "#22c55e", "#eab308", "#8b5cf6", "#f97316"]
 
 const ConfettiExplosion = () => {
@@ -101,7 +67,7 @@ const ConfettiExplosion = () => {
 // --- Main Ticket Component ---
 
 export interface TicketProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Shown as the reference number; also drives the barcode pattern. */
+  /** Shown as the reference number. */
   ticketId: string
   date: Date
   title?: string
@@ -110,7 +76,7 @@ export interface TicketProps extends React.HTMLAttributes<HTMLDivElement> {
   recipient: string
   senderName: string
   senderEmail: string
-  /** Rendered under the barcode, e.g. a "send another" button. */
+  /** Rendered at the bottom of the ticket, e.g. a "send another" button. */
   footer?: React.ReactNode
 }
 
@@ -190,10 +156,12 @@ const AnimatedTicket = React.forwardRef<HTMLDivElement, TicketProps>(
               </div>
             </div>
 
-            <DashedLine />
-
-            <Barcode value={ticketId} />
-            {footer}
+            {footer && (
+              <>
+                <DashedLine />
+                {footer}
+              </>
+            )}
           </div>
         </div>
         </div>

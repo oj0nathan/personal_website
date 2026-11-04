@@ -52,7 +52,8 @@ export default function ContactPage() {
       const data = (await res.json().catch(() => ({}))) as { error?: string }
       if (!res.ok) throw new Error(data.error || "Your message couldn't be sent. Please try again.")
       setSent({ id: "JH-" + Date.now().toString(36).toUpperCase(), at: new Date(), name: formData.name, email: formData.email })
-      setFormData({ name: "", email: "", company: "", message: "" })
+      // Keep who they are for "Send another message"; only the message starts fresh.
+      setFormData((prev) => ({ ...prev, message: "" }))
     } catch (err) {
       setError(err instanceof Error && err.message !== "Failed to fetch" ? err.message : "Couldn't reach the server. Check your connection and try again.")
     } finally {

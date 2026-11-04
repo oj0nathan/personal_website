@@ -311,3 +311,10 @@ a:not(.bento-card):not(button):hover {
     animation: none;
   }
 }
+
+/* Typeface: Georgia across the whole site. Unlayered, so it overrides Tailwind's default --font-sans/--font-serif
+   (font-sans and font-serif both render Georgia; font-mono stays monospace for codes). */
+:root {
+  --font-sans: Georgia, "Times New Roman", Times, serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+}

@@ -98,6 +98,7 @@ export default function Home() {
               <DoodleCrewFooter
                 variant="wordmark"
                 wordmark="Jonathan"
+                fontFamily="Georgia, 'Times New Roman', serif"
                 crew={LABUBU_CREW}
                 doodles={["bolt", "flame", "star", "plane", "bolt", "flame"]}
                 doodleCount={10}

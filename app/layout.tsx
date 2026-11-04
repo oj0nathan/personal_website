@@ -1,17 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
 import "./globals.css"
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-})
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
+// Typeface: Georgia everywhere, set as both --font-sans and --font-serif in globals.css.
 
 export const metadata: Metadata = {
   title: "Jonathan Ho - Portfolio",
@@ -72,7 +63,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#1E40AF" />
       </head>
-      <body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>{children}</body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
