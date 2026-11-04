@@ -1,83 +1,101 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
-import { ProjectCard } from "@/components/ui/project-card"
 import { BackgroundPaths } from "@/components/ui/background-paths"
+import PictureRailGallery, { type PictureRailItem } from "@/components/ui/picture-rail-gallery"
 
-const projects = [
+// `aspect` matches each thumbnail's width ÷ height so the card shows the whole image.
+const prints: PictureRailItem[] = [
   {
+    id: "medium",
     title: "Medium Articles",
+    artist: "Writing",
     description: "Insights on AI, quantitative finance, and technology trends.",
     image: "/medium-blog-articles-dark-theme-financial-analysis.jpg",
-    link: "https://medium.com/@johoblogs",
-    linkText: "Read Articles",
-    isWip: false,
-    isInternal: false,
+    aspect: 1,
+    accent: "#3b82f6",
+    drop: 0.04,
+    href: "https://medium.com/@johoblogs",
+    external: true,
   },
   {
+    id: "library",
     title: "Book Review Library",
+    artist: "Reading",
     description: "Comprehensive reviews from my reading journey with key takeaways.",
     image: "/images/book-morals-history.png",
-    link: "https://joholibrary.notion.site/Jonathan-s-Library-92e916b037f14ed38b8663a79aa3e6f6?pvs=74",
-    linkText: "Explore Library",
-    isWip: false,
-    isInternal: false,
+    aspect: 0.75,
+    accent: "#14b8a6",
+    drop: 0,
+    href: "https://joholibrary.notion.site/Jonathan-s-Library-92e916b037f14ed38b8663a79aa3e6f6?pvs=74",
+    external: true,
   },
   {
+    id: "hardware-primer",
     title: "Thematic Hardware Primer",
-    description:
-      "A primer built for anyone who wants to understand the physical infrastructure behind the AI trade. I go from first principles to supply chain, covering the full stack — semiconductors, lithography, memory, optics, power and grid, and humanoid robots.",
+    artist: "Research primer",
+    description: "A primer built for anyone who wants to understand the physical infrastructure behind the AI trade.",
     image: "/images/hardware-primer-thumbnail.png",
-    link: "/projects/hardware-primer",
-    linkText: "View Project",
-    isWip: false,
-    isInternal: true,
+    aspect: 1.6,
+    accent: "#6366f1",
+    drop: 0.08,
+    href: "/projects/hardware-primer",
   },
   {
+    id: "macro-dashboard",
     title: "Macro Intelligence Dashboard",
+    artist: "Data engineering",
     description:
       "A cloud-hosted macro monitoring system built to replace expensive terminal workflows with automated data pipelines, Postgres storage, and Grafana analytics.",
     image: "/images/bloomberg-terminal.png",
-    link: "/projects/macro-dashboard",
-    linkText: "View Project",
-    isWip: false,
-    isInternal: true,
+    aspect: 16 / 9,
+    accent: "#0ea5e9",
+    drop: 0.02,
+    href: "/projects/macro-dashboard",
   },
   {
+    id: "apac-risk",
     title: "APAC Multi-Asset Risk Decomposition",
+    artist: "Risk modelling",
     description:
       "Building an institutional-grade risk engine to decompose portfolio variance into systematic and idiosyncratic components using Ridge Regression for stable factor attributions.",
     image: "/images/apac-risk-thumbnail.jpg",
-    link: "/projects/apac-risk",
-    linkText: "View Project",
-    isWip: false,
-    isInternal: true,
+    aspect: 1,
+    accent: "#2563eb",
+    drop: 0.03,
+    href: "/projects/apac-risk",
   },
   {
+    id: "regime-detection",
     title: "Detecting Regime Shifts",
+    artist: "Quant research",
     description:
       "End-to-end regime-switching model using Hidden Markov Models to learn 4 macro regimes from US growth and inflation for multi-asset allocation.",
-    image: "/images/regime-shift-thumbnail.png",
-    link: "/projects/regime-detection",
-    linkText: "View Project",
-    isWip: false,
-    isInternal: true,
+    image: "/images/regime-shift-cover.webp",
+    aspect: 735 / 980,
+    accent: "#64748b",
+    drop: 0.08,
+    href: "/projects/regime-detection",
   },
   {
+    id: "risk-conditioned",
     title: "Risk-Conditioned Allocator",
+    artist: "Portfolio construction",
     description:
       "Dynamic risk-budgeting framework routing capital between trend following, mean reversion and cash using volatility, autocorrelation and VaR overlays.",
     image: "/images/risk-allocator-thumbnail.png",
-    link: "/projects/risk-conditioned",
-    linkText: "View Project",
-    isWip: false,
-    isInternal: true,
+    aspect: 786 / 464,
+    accent: "#0891b2",
+    drop: 0,
+    href: "/projects/risk-conditioned",
   },
 ]
 
 export default function ProjectsPage() {
+  const router = useRouter()
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -89,6 +107,23 @@ export default function ProjectsPage() {
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
+  }
+
+  const openProject = (item: PictureRailItem) => {
+    if (!item.href) return
+    if (item.external) window.open(item.href, "_blank", "noopener,noreferrer")
+    else router.push(item.href)
+  }
+
+  const gallery = {
+    variant: "badge" as const,
+    showMeta: false,
+    maxUnit: 230,
+    scroll: true,
+    caption: "Hover a card to bring it forward, click to open the project.",
+    labels: { front: "Front", back: "Back", close: "Close", open: "Click to open" },
+    onItemClick: openProject,
+    className: "bg-transparent",
   }
 
   return (
@@ -111,7 +146,7 @@ export default function ProjectsPage() {
         </motion.div>
 
         {/* Header */}
-        <header className="mb-12">
+        <header className="mb-4">
           <motion.h1
             custom={1}
             variants={fadeUpVariants}
@@ -132,24 +167,12 @@ export default function ProjectsPage() {
             Personal projects I've been working on.
           </motion.p>
         </header>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              imgSrc={project.image}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-              linkText={project.linkText}
-              index={index}
-              isWip={project.isWip}
-              isInternal={project.isInternal}
-            />
-          ))}
-        </div>
       </div>
+
+      {/* Projects hung as cards on a rail: hover to bring one forward, click to open it */}
+      <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible" className="relative z-10 pb-12">
+        <PictureRailGallery items={prints} autoplay interval={3200} {...gallery} />
+      </motion.div>
 
       {/* Bottom gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
