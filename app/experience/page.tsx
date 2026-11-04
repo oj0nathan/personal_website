@@ -5,6 +5,48 @@ import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { Timeline } from "@/components/ui/timeline"
+import PolaroidLineCarousel, { type Slide } from "@/components/ui/polaroid-line-carousel"
+
+// Every print is a 4:3 landscape so group shots fit; `position` keeps everyone in frame on the portrait photos.
+// No titles, so the prints are photo only; `alt` still describes each one. Clicking the centre print enlarges it.
+const capitalPhotos: Slide[] = [
+  { image: "/images/capital-1.png", alt: "Capital Group summer interns", position: "center 60%" },
+  { image: "/images/capital-2.png", alt: "Dinner with the Capital Group interns", position: "center 45%" },
+  { image: "/images/capital-3.png", alt: "Capital Group team outing at Gardens by the Bay", position: "center 92%" },
+]
+
+const whiteCoatPhotos: Slide[] = [
+  { image: "/images/whitecoat-2.png", alt: "WhiteCoat interns at the office", position: "center 48%" },
+  { image: "/images/whitecoat-1.png", alt: "At the WhiteCoat front desk", position: "center 55%" },
+  { image: "/images/whitecoat-3.png", alt: "With a colleague at WhiteCoat", position: "center 45%" },
+  { image: "/images/whitecoat-4.png", alt: "With the WhiteCoat team", position: "center 35%" },
+]
+
+const smuPhotos: Slide[] = [
+  { image: "/images/smu-class-1.webp", alt: "SMU class photo", position: "center 55%" },
+  { image: "/images/smu-class-2.webp", alt: "SMU project team photo", position: "center 100%" },
+]
+
+/** A line of polaroids for an entry's photos, on a faint panel so it reads as part of the card above. */
+function PhotoLine({ slides, label }: { slides: Slide[]; label: string }) {
+  return (
+    <div className="mt-2 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+      <PolaroidLineCarousel
+        slides={slides}
+        height={560}
+        cardWidth={380}
+        fill={0.68}
+        aspect={4 / 3}
+        sag={22}
+        autoplay={5000}
+        string="rgba(255,255,255,0.35)"
+        background="transparent"
+        ink="#e5e7eb"
+        ariaLabel={label}
+      />
+    </div>
+  )
+}
 
 export default function ExperiencePage() {
   const fadeUpVariants = {
@@ -28,7 +70,7 @@ export default function ExperiencePage() {
           {/* Capital Group */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
                 <Image
                   src="/images/capital-group-logo.png"
                   alt="Capital Group"
@@ -38,13 +80,13 @@ export default function ExperiencePage() {
                 />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">Capital Group</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-white">Capital Group</h2>
               </div>
             </div>
 
-            <div className="text-white/80 font-medium">Asset Management Summer Associate | May 2026 - July 2026</div>
+            <div className="text-white/85 font-medium text-base md:text-lg">Asset Management Summer Associate | May 2026 - July 2026</div>
 
-            <p className="text-white/60 leading-relaxed text-sm">
+            <p className="text-white/65 leading-relaxed text-base md:text-lg">
               Since 1931, Capital Group has been dedicated to improving people&apos;s lives through successful
               investing. Capital Group&apos;s commitment to that mission has fostered lasting relationships with
               investors and financial intermediaries built on trust, integrity, excellent service and investment
@@ -53,60 +95,7 @@ export default function ExperiencePage() {
               managers.
             </p>
 
-            <ul className="space-y-2">
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>
-                  Analyzed cross-border fund registration and share-class structures for Luxembourg-domiciled funds,
-                  building an automated compliance dashboard in Power BI to reconcile registration policies against
-                  live system data and flag regulatory exceptions
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>
-                  Built a Python-based OCR and regex extraction tool to parse financial regulatory documents,
-                  accelerating share-class competitive analysis and supporting new fund product launches
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>
-                  Standardized institutional workflows for global share-class launches and vendor data management,
-                  streamlining time-to-market for new fund products
-                </span>
-              </li>
-            </ul>
-
-            <div className="grid grid-cols-1 sm:flex sm:flex-row gap-2 pt-2">
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/capital-1.png"
-                  alt="Capital Group team photo 1"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/capital-2.png"
-                  alt="Capital Group team photo 2"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/capital-3.png"
-                  alt="Capital Group team photo 3"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_72%]"
-                />
-              </div>
-            </div>
+            <PhotoLine slides={capitalPhotos} label="Capital Group photos" />
           </div>
         </div>
       ),
@@ -118,7 +107,7 @@ export default function ExperiencePage() {
           {/* WhiteCoat */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
                 <Image
                   src="/images/whitecoat-logo.png"
                   alt="WhiteCoat"
@@ -128,73 +117,18 @@ export default function ExperiencePage() {
                 />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">WhiteCoat</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-white">WhiteCoat</h2>
               </div>
             </div>
 
-            <div className="text-white/80 font-medium">Product & Data Intern | May 2025 - August 2025</div>
+            <div className="text-white/85 font-medium text-base md:text-lg">Product & Data Intern | May 2025 - August 2025</div>
 
-            <p className="text-white/60 leading-relaxed text-sm">
+            <p className="text-white/65 leading-relaxed text-base md:text-lg">
               WhiteCoat is Southeast Asia's premier omnichannel healthcare platform, delivering comprehensive on-demand
               telemedicine and in-person consultations.
             </p>
 
-            <ul className="space-y-2">
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>
-                  Conducted comprehensive data analytics across multiple business dashboards using SQL, Databricks, and
-                  Metabase
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>Developed and deployed NLP sentiment analysis models using Hugging Face transformers</span>
-              </li>
-              <li className="flex items-start gap-3 text-white/60 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                <span>Applied AI and prompt engineering techniques to optimize workflows</span>
-              </li>
-            </ul>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 w-full sm:w-fit">
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/whitecoat-1.png"
-                  alt="WhiteCoat team photo 1"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/whitecoat-2.png"
-                  alt="WhiteCoat team photo 2"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/whitecoat-3.png"
-                  alt="WhiteCoat team photo 3"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-              <div className="w-full sm:w-48 h-48 sm:h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-                <Image
-                  src="/images/whitecoat-4.png"
-                  alt="WhiteCoat team photo 4"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover object-[center_30%]"
-                />
-              </div>
-            </div>
+            <PhotoLine slides={whiteCoatPhotos} label="WhiteCoat photos" />
           </div>
         </div>
       ),
@@ -204,50 +138,22 @@ export default function ExperiencePage() {
       content: (
         <div className="space-y-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0">
               <Image src="/images/smu-logo.png" alt="SMU" width={48} height={48} className="object-contain p-1" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white">SMU Information Systems</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">SMU Information Systems</h2>
             </div>
           </div>
 
-          <div className="text-white/80 font-medium">Bachelor's Degree | 2025 - 2029</div>
+          <div className="text-white/85 font-medium text-base md:text-lg">Bachelor's Degree | 2025 - 2029</div>
 
-          <p className="text-white/60 leading-relaxed text-sm">
+          <p className="text-white/65 leading-relaxed text-base md:text-lg">
             Pursuing Information Systems at Singapore Management University, majoring in Financial Technology.
             Exploring the intersection of finance and technology through financial markets.
           </p>
 
-          <div className="grid grid-cols-1 sm:flex sm:flex-row gap-2 pt-2">
-            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-              <Image
-                src="/images/smu-1.png"
-                alt="SMU classroom with code"
-                width={192}
-                height={128}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-              <Image
-                src="/images/smu-2.png"
-                alt="SMU WorkWell presentation"
-                width={192}
-                height={128}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full sm:w-48 h-32 rounded-lg overflow-hidden border border-white/[0.08] hover:border-blue-500/30 transition-colors">
-              <Image
-                src="/images/smu-3.png"
-                alt="SMU classroom group"
-                width={192}
-                height={128}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+          <PhotoLine slides={smuPhotos} label="SMU photos" />
         </div>
       ),
     },
