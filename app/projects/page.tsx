@@ -30,8 +30,7 @@ const prints: PictureRailItem[] = [
     aspect: 0.75,
     accent: "#14b8a6",
     drop: 0,
-    href: "https://joholibrary.notion.site/Jonathan-s-Library-92e916b037f14ed38b8663a79aa3e6f6?pvs=74",
-    external: true,
+    href: "/books",
   },
   {
     id: "hardware-primer",

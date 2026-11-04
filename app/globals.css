@@ -282,3 +282,32 @@ a:not(.bento-card):not(button) {
 a:not(.bento-card):not(button):hover {
   color: var(--primary);
 }
+
+/* 3D book (components/ui/book.tsx): spine shading, page edges and the book's shadow */
+@utility bg-book-bind-bg {
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 12%, hsla(0, 0%, 100%, 0.25) 29.25%, hsla(0, 0%, 100%, 0) 50.5%, hsla(0, 0%, 100%, 0) 75.25%, hsla(0, 0%, 100%, 0.25) 91%, hsla(0, 0%, 100%, 0)), linear-gradient(90deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.1) 12%, transparent 30%, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.2) 73.5%, rgba(0, 0, 0, 0.5) 75.25%, rgba(0, 0, 0, 0.15) 85.25%, transparent);
+}
+@utility bg-book-pages {
+  background-image: repeating-linear-gradient(90deg, #fff, #efefef 1px, #fff 3px, #9a9a9a 0);
+}
+@utility shadow-book {
+  box-shadow: 0 1.8px 3.6px rgba(0, 0, 0, 0.05), 0 10.8px 21.6px rgba(0, 0, 0, 0.08), inset 0 -0.9px 0 rgba(0, 0, 0, 0.1), inset 0 1.8px 1.8px hsla(0, 0%, 100%, 0.1), inset 3.6px 0 3.6px rgba(0, 0, 0, 0.1);
+}
+
+/* Page transitions (app/template.tsx): every route fades in. */
+.page-enter {
+  animation: page-enter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
