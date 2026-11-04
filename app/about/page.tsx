@@ -1,233 +1,177 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
+import type { ReactNode } from "react"
 import { ArrowLeft } from "lucide-react"
-import { motion } from "framer-motion"
 import { AnimatedHighlight, AnimatedBoxHighlight } from "@/components/ui/animated-highlight"
-import { ShootingStars } from "@/components/ui/shooting-stars"
+import ScrollAdventure, { type ScrollAdventureSection } from "@/components/ui/animated-scroll"
+
+function Chapter({ index, label, children }: { index: string; label: string; children: ReactNode }) {
+  return (
+    <div className="mx-auto max-w-2xl space-y-5 md:space-y-7">
+      <p className="text-xs md:text-sm font-medium uppercase tracking-[0.3em] text-blue-400/80">
+        {index} <span className="text-white/30">—</span> {label}
+      </p>
+      {children}
+    </div>
+  )
+}
+
+const prose = "text-white/75 leading-relaxed text-[15px] md:text-xl xl:text-[1.6rem] xl:leading-[1.6]"
+
+const sections: ScrollAdventureSection[] = [
+  {
+    imageSide: "left",
+    images: [
+      { src: "/images/about-dress-shirt.webp", alt: "Jonathan smiling in a white dress shirt", position: "center 60%" },
+      { src: "/images/about-presenting.png", alt: "Jonathan presenting", position: "center 65%" },
+    ],
+    content: (
+      <Chapter index="01" label="Background">
+        <h1 className="text-4xl md:text-6xl xl:text-7xl font-serif text-white tracking-tight">
+          About <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-500">Me</span>
+        </h1>
+        <p className={prose}>
+          I am studying Information Systems at{" "}
+          <AnimatedHighlight color="blue" delay={0.4}>
+            Singapore Management University (SMU)
+          </AnimatedHighlight>
+          , with a specialization in Financial Technology. Since my National Service days, I have been drawn to{" "}
+          <AnimatedBoxHighlight color="red" delay={0.6}>
+            financial markets
+          </AnimatedBoxHighlight>{" "}
+          and{" "}
+          <AnimatedBoxHighlight color="red" delay={0.8}>
+            macro research
+          </AnimatedBoxHighlight>{" "}
+          where global events, policy shifts, and capital flows connect and play out over time.
+        </p>
+        <p className={prose}>
+          Alongside that, I have a strong technical foundation across both{" "}
+          <AnimatedBoxHighlight color="red" delay={1.0}>
+            hardware
+          </AnimatedBoxHighlight>{" "}
+          and{" "}
+          <AnimatedBoxHighlight color="red" delay={1.2}>
+            software equities
+          </AnimatedBoxHighlight>
+          , and I have a solid grasp of statistical models and machine learning techniques and how they apply to
+          real-world problems, especially when grounded in solid data and evidence.
+        </p>
+      </Chapter>
+    ),
+  },
+  {
+    imageSide: "right",
+    images: [
+      { src: "/images/about-fitness.png", alt: "Jonathan at a Hyrox fitness competition", position: "center 35%" },
+      { src: "/images/about-running.webp", alt: "Jonathan running on a track", position: "center 40%" },
+    ],
+    content: (
+      <Chapter index="02" label="Outside of school">
+        <p className={prose}>
+          Outside of school, you will often find me{" "}
+          <AnimatedHighlight color="blue" delay={0.9}>
+            running
+          </AnimatedHighlight>
+          , in the gym working on{" "}
+          <AnimatedHighlight color="blue" delay={1.1}>
+            strength training
+          </AnimatedHighlight>
+          , or just taking some time to clear my head through exercise. I also spend a lot of time{" "}
+          <AnimatedBoxHighlight color="red" delay={1.3}>
+            reading
+          </AnimatedBoxHighlight>
+          , whether it&apos;s biographies, economics, geopolitics, or philosophy, and turning those ideas into{" "}
+          <AnimatedBoxHighlight color="red" delay={1.5}>
+            writing
+          </AnimatedBoxHighlight>
+          . Sometimes that looks like longer reflections on Medium, other times it is more structured book reviews on
+          Notion. Writing helps me organise my thoughts and{" "}
+          <AnimatedHighlight color="blue" delay={1.7}>
+            see what I truly understand
+          </AnimatedHighlight>
+          .
+        </p>
+      </Chapter>
+    ),
+  },
+  {
+    imageSide: "left",
+    images: [{ src: "/images/about-reading.png", alt: "Jonathan reading a book", position: "center 55%" }],
+    content: (
+      <Chapter index="03" label="Sharing what I learn">
+        <p className={prose}>
+          I really enjoy{" "}
+          <AnimatedHighlight color="blue" delay={0.9}>
+            sharing what I learn with others
+          </AnimatedHighlight>
+          , especially topics that might seem intimidating at first. This began back in Junior College, where I founded
+          a{" "}
+          <AnimatedBoxHighlight color="red" delay={1.2}>
+            peer tutoring initiative
+          </AnimatedBoxHighlight>{" "}
+          that still continues today. My goal is to make complex ideas feel more{" "}
+          <AnimatedHighlight color="blue" delay={1.5}>
+            approachable, practical, and maybe even enjoyable
+          </AnimatedHighlight>
+          .
+        </p>
+      </Chapter>
+    ),
+  },
+  {
+    imageSide: "right",
+    images: [{ src: "/images/about-mountain.png", alt: "Jonathan at Cradle Mountain", position: "30% 75%" }],
+    content: (
+      <Chapter index="04" label="Let's talk">
+        <p className={prose}>
+          Feel free to{" "}
+          <AnimatedHighlight color="blue" delay={0.9}>
+            connect and have a conversation
+          </AnimatedHighlight>{" "}
+          about your ideas, whether they are related to{" "}
+          <AnimatedBoxHighlight color="red" delay={1.1}>
+            finance
+          </AnimatedBoxHighlight>
+          ,{" "}
+          <AnimatedBoxHighlight color="red" delay={1.3}>
+            tech
+          </AnimatedBoxHighlight>
+          ,{" "}
+          <AnimatedBoxHighlight color="red" delay={1.5}>
+            markets
+          </AnimatedBoxHighlight>
+          , or anything in between.
+        </p>
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-blue-400/60 hover:text-blue-300"
+        >
+          Get in touch
+        </Link>
+      </Chapter>
+    ),
+  },
+]
 
 export default function AboutPage() {
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.2 + i * 0.1,
-        ease: [0.25, 0.4, 0.25, 1],
-      },
-    }),
-  }
-
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#030303]">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.05] via-transparent to-indigo-500/[0.05] blur-3xl" />
-
-      {/* Shooting stars */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <ShootingStars
-          starColor="#3B82F6"
-          trailColor="#60A5FA"
-          minSpeed={15}
-          maxSpeed={35}
-          minDelay={800}
-          maxDelay={2500}
-          starWidth={12}
-          starHeight={2}
-        />
-        <ShootingStars
-          starColor="#6366F1"
-          trailColor="#818CF8"
-          minSpeed={10}
-          maxSpeed={25}
-          minDelay={1500}
-          maxDelay={3500}
-          starWidth={8}
-          starHeight={1}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-5xl px-4 py-8 md:px-8 md:py-12">
-        {/* Back button */}
-        <motion.div custom={0} variants={fadeUpVariants} initial="hidden" animate="visible">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-white/50 hover:text-blue-400 transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back</span>
-          </Link>
-        </motion.div>
-
-        <header className="mb-12 flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-          <div className="flex-1">
-            <motion.h1
-              custom={1}
-              variants={fadeUpVariants}
-              initial="hidden"
-              animate="visible"
-              className="text-4xl md:text-6xl font-serif text-white mb-4 tracking-tight"
+    <main className="relative w-full bg-[#030303]">
+      <ScrollAdventure
+        sections={sections}
+        overlay={
+          <div className="p-4 md:p-6">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-sm text-white/80 backdrop-blur transition-colors hover:text-blue-400"
             >
-              About <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-500">Me</span>
-            </motion.h1>
-            <motion.p
-              custom={2}
-              variants={fadeUpVariants}
-              initial="hidden"
-              animate="visible"
-              className="text-xl text-white/40"
-            >
-              A bit about myself.
-            </motion.p>
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </Link>
           </div>
-
-          <motion.div
-            custom={2}
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-end items-end"
-          >
-            {/* Photo 1 - Running */}
-            <motion.div
-              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-xl shadow-blue-500/10"
-              whileHover={{ scale: 1.05, rotate: -1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image src="/images/image-me-3.webp" alt="Jonathan - running" fill className="object-cover object-top" />
-            </motion.div>
-
-            {/* Photo 2 - Reading */}
-            <motion.div
-              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/images/about-reading.png"
-                alt="Jonathan - reading a book"
-                fill
-                className="object-cover object-[center_55%]"
-              />
-            </motion.div>
-
-            {/* Photo 3 - Presenting */}
-            <motion.div
-              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/images/about-presenting.png"
-                alt="Jonathan - presenting"
-                fill
-                className="object-cover object-[center_65%]"
-              />
-            </motion.div>
-
-            {/* Photo 4 - Fitness competition */}
-            <motion.div
-              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/images/about-fitness.png"
-                alt="Jonathan - fitness competition"
-                fill
-                className="object-cover object-[center_35%]"
-              />
-            </motion.div>
-
-            {/* Photo 5 - Cradle Mountain */}
-            <motion.div
-              className="relative w-28 h-40 md:w-32 md:h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-xl"
-              whileHover={{ scale: 1.05, rotate: -1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/images/about-mountain.png"
-                alt="Jonathan - Cradle Mountain"
-                fill
-                className="object-cover object-[30%_70%]"
-              />
-            </motion.div>
-          </motion.div>
-        </header>
-
-        {/* Content - Flowing text with selective highlights */}
-        <div className="space-y-10">
-          {/* Paragraph 1 - Education & Interests */}
-          <motion.section custom={4} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              I am studying Information Systems at{" "}
-              <AnimatedHighlight color="blue" delay={0.2}>
-                Singapore Management University (SMU)
-              </AnimatedHighlight>
-              , with a specialization in Financial Technology. Since my National Service days, I have been drawn to{" "}
-              <AnimatedBoxHighlight color="red" delay={0.4}>
-                financial markets
-              </AnimatedBoxHighlight>{" "}
-              and{" "}
-              <AnimatedBoxHighlight color="red" delay={0.6}>
-                macro research
-              </AnimatedBoxHighlight>{" "}
-              where global events, policy shifts, and capital flows connect and play out over time.
-            </p>
-          </motion.section>
-
-          {/* Paragraph 2 - Technical Foundation */}
-          <motion.section custom={5} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              Alongside that, I have a strong technical foundation across both{" "}
-              <AnimatedBoxHighlight color="red" delay={0.8}>
-                hardware
-              </AnimatedBoxHighlight>{" "}
-              and{" "}
-              <AnimatedBoxHighlight color="red" delay={1.0}>
-                software equities
-              </AnimatedBoxHighlight>
-              , and I have a solid grasp of statistical models and machine learning techniques and how they apply to
-              real-world problems, especially when grounded in solid data and evidence.
-            </p>
-          </motion.section>
-
-          {/* Paragraph 3 - Personal Interests */}
-          <motion.section custom={6} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              Outside of school, you will often find me running, in the gym working on strength training, or just
-              taking some time to clear my head through exercise. I also spend a lot of time reading, whether it&apos;s
-              biographies, economics, geopolitics, or philosophy, and turning those ideas into writing. Sometimes that
-              looks like longer reflections on Medium, other times it is more structured book reviews on Notion.
-              Writing helps me organise my thoughts and see what I truly understand.
-            </p>
-          </motion.section>
-
-          {/* Paragraph 4 - Teaching & Sharing */}
-          <motion.section custom={7} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              I really enjoy <span className="text-white font-semibold">sharing what I learn with others</span>,
-              especially topics that might seem intimidating at first. This began back in Junior College, where I
-              founded a peer tutoring initiative that still continues today. My goal is to make complex ideas feel more
-              approachable, practical, and maybe even enjoyable.
-            </p>
-          </motion.section>
-
-          {/* Paragraph 5 - Call to Action */}
-          <motion.section custom={8} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-white/70 leading-relaxed text-lg md:text-xl">
-              Feel free to connect and have a conversation about your ideas, whether they are related to finance, tech,
-              markets, or anything in between.
-            </p>
-          </motion.section>
-        </div>
-      </div>
-
-      {/* Bottom gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
+        }
+      />
     </main>
   )
 }
