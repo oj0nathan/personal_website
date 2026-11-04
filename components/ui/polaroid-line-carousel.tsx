@@ -23,6 +23,8 @@ export type Slide = {
   alt?: string
   /** CSS object-position for the photo inside the print, to keep the subject in frame. */
   position?: string
+  /** Zooms the photo inside the print, around `position`. 1 = no zoom. The enlarged view always shows the whole photo. */
+  scale?: number
   /** Palette and seed of the painted landscape used when `image` is empty. */
   palette?: LandPalette
   seed?: number
@@ -541,7 +543,7 @@ export default function PolaroidLineCarousel({
         <div key={i} className="pl-card" data-i={i} data-on={i === active ? "1" : "0"} data-zoom={zoom ? "1" : "0"} ref={(el) => void (cards.current[i] = el)} aria-hidden={i === active ? undefined : true}>
           <div className="pl-print" data-bare={hasNotes ? "0" : "1"}>
             <div className="pl-shot">
-              {srcs[i] ? <img src={srcs[i]} alt={sl.alt || sl.title || ""} draggable={false} style={sl.position ? { objectPosition: sl.position } : undefined} /> : null}
+              {srcs[i] ? <img src={srcs[i]} alt={sl.alt || sl.title || ""} draggable={false} style={{ objectPosition: sl.position, ...(sl.scale && sl.scale !== 1 ? { transform: `scale(${sl.scale})`, transformOrigin: sl.position ?? "center" } : null) }} /> : null}
             </div>
             {hasNotes ? <div className="pl-note">{sl.title || ""}</div> : null}
           </div>

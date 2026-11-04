@@ -10,14 +10,17 @@ import PolaroidLineCarousel, { type Slide } from "@/components/ui/polaroid-line-
 // Every print is a 4:3 landscape so group shots fit; `position` keeps everyone in frame on the portrait photos.
 // No titles, so the prints are photo only; `alt` still describes each one. Clicking the centre print enlarges it.
 const capitalPhotos: Slide[] = [
+  { image: "/images/capital-4.webp", alt: "With the team in front of the Capital Group sign", position: "center 70%" },
+  { image: "/images/capital-5.webp", alt: "Capital Group's 'Say hello' post introducing the 2026 summer associates", position: "center 74%" },
   { image: "/images/capital-1.png", alt: "Capital Group summer interns", position: "center 60%" },
   { image: "/images/capital-2.png", alt: "Dinner with the Capital Group interns", position: "center 45%" },
+  { image: "/images/capital-6.webp", alt: "Capital Group interns at a cooking class", position: "center 85%" },
   { image: "/images/capital-3.png", alt: "Capital Group team outing at Gardens by the Bay", position: "center 92%" },
 ]
 
 const whiteCoatPhotos: Slide[] = [
   { image: "/images/whitecoat-2.png", alt: "WhiteCoat interns at the office", position: "center 48%" },
-  { image: "/images/whitecoat-1.png", alt: "At the WhiteCoat front desk", position: "center 55%" },
+  { image: "/images/whitecoat-1.png", alt: "At the WhiteCoat front desk", position: "62% 75%", scale: 1.5 },
   { image: "/images/whitecoat-3.png", alt: "With a colleague at WhiteCoat", position: "center 45%" },
   { image: "/images/whitecoat-4.png", alt: "With the WhiteCoat team", position: "center 35%" },
 ]
