@@ -3,9 +3,10 @@
 import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Send } from "lucide-react"
+import { ArrowLeft, Loader2, Send } from "lucide-react"
 import { motion } from "framer-motion"
 import { AuroraBackground } from "@/components/ui/aurora-background"
+import { AnimatedTicket } from "@/components/ui/ticket-confirmation-card"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,10 @@ export default function ContactPage() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [sent, setSent] = useState<{ id: string; at: Date; name: string; email: string } | null>(null)
+  // Honeypot: hidden from people, so only bots fill it in; the API drops those messages.
+  const [website, setWebsite] = useState("")
 
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -34,23 +39,25 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    const subject = encodeURIComponent(
-      `Contact from ${formData.name}${formData.company ? ` at ${formData.company}` : ""}`,
-    )
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}${formData.company ? `\nCompany: ${formData.company}` : ""}\n\nMessage:\n${formData.message}`,
-    )
-
-    const mailtoLink = `mailto:jonathanhosa04@gmail.com?subject=${subject}&body=${body}`
-    window.open(mailtoLink, "_blank")
-
-    setTimeout(() => {
+    setError(null)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, website }),
+      })
+      const data = (await res.json().catch(() => ({}))) as { error?: string }
+      if (!res.ok) throw new Error(data.error || "Your message couldn't be sent. Please try again.")
+      setSent({ id: "JH-" + Date.now().toString(36).toUpperCase(), at: new Date(), name: formData.name, email: formData.email })
+      setFormData({ name: "", email: "", company: "", message: "" })
+    } catch (err) {
+      setError(err instanceof Error && err.message !== "Failed to fetch" ? err.message : "Couldn't reach the server. Check your connection and try again.")
+    } finally {
       setIsSubmitting(false)
-    }, 1000)
+    }
   }
 
   return (
@@ -80,7 +87,38 @@ export default function ContactPage() {
         </header>
 
         <motion.div custom={2} variants={fadeUpVariants} initial="hidden" animate="visible" className="space-y-6">
+          {sent ? (
+            <div className="flex justify-center py-4">
+              <AnimatedTicket
+                ticketId={sent.id}
+                date={sent.at}
+                recipient="Jonathan Ho"
+                senderName={sent.name}
+                senderEmail={sent.email}
+                subtitle="Your message is in my inbox. I'll get back to you soon."
+                footer={
+                  <button
+                    type="button"
+                    onClick={() => setSent(null)}
+                    className="w-full rounded-xl border border-white/10 px-4 py-3 text-sm text-white/70 hover:border-blue-400/50 hover:text-white"
+                  >
+                    Send another message
+                  </button>
+                }
+              />
+            </div>
+          ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
+            <input
+              type="text"
+              name="website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-px w-px opacity-0"
+            />
             <div className="space-y-2">
               <label className="text-white/80 text-sm font-medium">Name</label>
               <div className="relative">
@@ -140,14 +178,31 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {error && (
+              <p role="alert" className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                {error}
+              </p>
+            )}
+
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600/80 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600/80 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-white font-medium"
             >
-              <Send className="w-5 h-5 text-white" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  Send message
+                </>
+              )}
             </button>
           </form>
+          )}
 
           <motion.div
             custom={3}
