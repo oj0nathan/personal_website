@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import type { ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
+import { CoffeePourMenu, type CoffeeItem } from "@/components/ui/coffee-pour-menu"
 import { ArrowLeft } from "lucide-react"
 import { AnimatedHighlight, AnimatedBoxHighlight } from "@/components/ui/animated-highlight"
 import ScrollAdventure, { type ScrollAdventureSection } from "@/components/ui/animated-scroll"
@@ -17,7 +18,65 @@ function Chapter({ index, label, children }: { index: string; label: string; chi
   )
 }
 
-const prose = "text-white/75 leading-relaxed text-[15px] md:text-xl xl:text-[1.6rem] xl:leading-[1.6]"
+const LATTE: CoffeeItem[] = [
+  {
+    id: "latte",
+    name: "Café latte",
+    description: "a café latte being poured: espresso, then steamed milk, finished with a foam heart",
+    vessel: "tall-glass",
+    layers: [
+      { type: "espresso", amount: 0.25 },
+      { type: "milk", amount: 0.51 },
+    ],
+    foam: 0.11,
+    blend: 0.15,
+    art: "heart",
+  },
+]
+
+/**
+ * The latte only exists while its section is on screen, so it pours as the reader arrives
+ * (and fresh each time they come back) rather than finishing unseen at page load.
+ */
+function LatteMoment() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [shown, setShown] = useState(false)
+  // Bumped on every arrival; keying the stage on it restarts the pour.
+  const [visit, setVisit] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    let on = false
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!on && e.intersectionRatio >= 0.6) {
+          on = true
+          setShown(true)
+          setVisit((v) => v + 1)
+        } else if (on && !e.isIntersecting) {
+          on = false
+          setShown(false)
+        }
+      },
+      { threshold: [0, 0.6] },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} className="relative h-full w-full">
+      {/* No card: the glass stands straight on the page in its own pool of light. */}
+      {shown && <CoffeePourMenu key={visit} items={LATTE} stageOnly plain />}
+      <p className="pointer-events-none absolute inset-x-0 bottom-0 text-center font-serif text-[11px] italic leading-snug text-white/60 md:text-sm">
+        My go-to order is always an iced café latte or a flat white!
+      </p>
+    </div>
+  )
+}
+
+const prose ="text-white/75 leading-relaxed text-[15px] md:text-xl xl:text-[1.6rem] xl:leading-[1.6]"
 
 const sections: ScrollAdventureSection[] = [
   {
@@ -33,26 +92,26 @@ const sections: ScrollAdventureSection[] = [
         </h1>
         <p className={prose}>
           I am studying Information Systems at{" "}
-          <AnimatedHighlight color="blue" delay={0.4}>
+          <AnimatedHighlight color="blue" delay={0.45}>
             Singapore Management University (SMU)
           </AnimatedHighlight>
           , with a specialization in Financial Technology. Since my National Service days, I have been drawn to{" "}
-          <AnimatedBoxHighlight color="red" delay={0.6}>
+          <AnimatedBoxHighlight color="red" delay={0.55}>
             financial markets
           </AnimatedBoxHighlight>{" "}
           and{" "}
-          <AnimatedBoxHighlight color="red" delay={0.8}>
+          <AnimatedBoxHighlight color="red" delay={0.65}>
             macro research
           </AnimatedBoxHighlight>{" "}
           where global events, policy shifts, and capital flows connect and play out over time.
         </p>
         <p className={prose}>
           Alongside that, I have a strong technical foundation across both{" "}
-          <AnimatedBoxHighlight color="red" delay={1.0}>
+          <AnimatedBoxHighlight color="red" delay={0.75}>
             hardware
           </AnimatedBoxHighlight>{" "}
           and{" "}
-          <AnimatedBoxHighlight color="red" delay={1.2}>
+          <AnimatedBoxHighlight color="red" delay={0.85}>
             software equities
           </AnimatedBoxHighlight>
           , and I have a solid grasp of statistical models and machine learning techniques and how they apply to
@@ -71,24 +130,24 @@ const sections: ScrollAdventureSection[] = [
       <Chapter index="02" label="Outside of school">
         <p className={prose}>
           Outside of school, you will often find me{" "}
-          <AnimatedHighlight color="blue" delay={0.9}>
+          <AnimatedHighlight color="blue" delay={0.45}>
             running
           </AnimatedHighlight>
           , in the gym working on{" "}
-          <AnimatedHighlight color="blue" delay={1.1}>
+          <AnimatedHighlight color="blue" delay={0.55}>
             strength training
           </AnimatedHighlight>
           , or just taking some time to clear my head through exercise. I also spend a lot of time{" "}
-          <AnimatedBoxHighlight color="red" delay={1.3}>
+          <AnimatedBoxHighlight color="red" delay={0.65}>
             reading
           </AnimatedBoxHighlight>
           , whether it&apos;s biographies, economics, geopolitics, or philosophy, and turning those ideas into{" "}
-          <AnimatedBoxHighlight color="red" delay={1.5}>
+          <AnimatedBoxHighlight color="red" delay={0.75}>
             writing
           </AnimatedBoxHighlight>
           . Sometimes that looks like longer reflections on Medium, other times it is more structured book reviews on
           Notion. Writing helps me organise my thoughts and{" "}
-          <AnimatedHighlight color="blue" delay={1.7}>
+          <AnimatedHighlight color="blue" delay={0.85}>
             see what I truly understand
           </AnimatedHighlight>
           .
@@ -103,16 +162,16 @@ const sections: ScrollAdventureSection[] = [
       <Chapter index="03" label="Sharing what I learn">
         <p className={prose}>
           I really enjoy{" "}
-          <AnimatedHighlight color="blue" delay={0.9}>
+          <AnimatedHighlight color="blue" delay={0.45}>
             sharing what I learn with others
           </AnimatedHighlight>
           , especially topics that might seem intimidating at first. This began back in Junior College, where I founded
           a{" "}
-          <AnimatedBoxHighlight color="red" delay={1.2}>
+          <AnimatedBoxHighlight color="red" delay={0.6}>
             peer tutoring initiative
           </AnimatedBoxHighlight>{" "}
           that still continues today. My goal is to make complex ideas feel more{" "}
-          <AnimatedHighlight color="blue" delay={1.5}>
+          <AnimatedHighlight color="blue" delay={0.75}>
             approachable, practical, and maybe even enjoyable
           </AnimatedHighlight>
           .
@@ -123,26 +182,27 @@ const sections: ScrollAdventureSection[] = [
   {
     imageSide: "right",
     images: [{ src: "/images/about-mountain.png", alt: "Jonathan at Cradle Mountain", position: "30% 75%" }],
+    visual: <LatteMoment />,
     content: (
       <Chapter index="04" label="Let's talk">
         <p className={prose}>
-          Feel free to{" "}
-          <AnimatedHighlight color="blue" delay={0.9}>
-            connect and have a conversation
+          Feel free to connect, have a conversation, or{" "}
+          <AnimatedHighlight color="blue" delay={0.45}>
+            grab a coffee
           </AnimatedHighlight>{" "}
-          about your ideas, whether they are related to{" "}
-          <AnimatedBoxHighlight color="red" delay={1.1}>
+          with me. Whether your ideas are about{" "}
+          <AnimatedBoxHighlight color="red" delay={0.55}>
             finance
           </AnimatedBoxHighlight>
           ,{" "}
-          <AnimatedBoxHighlight color="red" delay={1.3}>
+          <AnimatedBoxHighlight color="red" delay={0.65}>
             tech
           </AnimatedBoxHighlight>
           ,{" "}
-          <AnimatedBoxHighlight color="red" delay={1.5}>
+          <AnimatedBoxHighlight color="red" delay={0.75}>
             markets
           </AnimatedBoxHighlight>
-          , or anything in between.
+          , or anything in between, I&apos;d love to hear them.
         </p>
         <Link
           href="/contact"

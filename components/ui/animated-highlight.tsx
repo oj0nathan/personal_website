@@ -35,14 +35,9 @@ export function AnimatedHighlight({ children, color = "blue", delay = 0, classNa
 
   const styles = colorStyles[color]
 
+  // The words show with the rest of the sentence; only the underline draws in, so the line never reads with a gap.
   return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0, filter: "blur(4px)" }}
-      animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
-      transition={{ duration: 0.6, delay }}
-      className={`relative inline ${className}`}
-    >
+    <span ref={ref} className={`relative inline ${className}`}>
       <span className={`${styles.text} font-medium`}>{children}</span>
       {/* Hand-drawn style underline with slight wave */}
       <motion.span
@@ -55,7 +50,7 @@ export function AnimatedHighlight({ children, color = "blue", delay = 0, classNa
             "polygon(0% 60%, 2% 40%, 5% 70%, 10% 30%, 15% 60%, 20% 40%, 25% 55%, 30% 35%, 35% 65%, 40% 45%, 45% 55%, 50% 40%, 55% 60%, 60% 35%, 65% 55%, 70% 45%, 75% 60%, 80% 40%, 85% 55%, 90% 35%, 95% 60%, 100% 50%, 100% 100%, 0% 100%)",
         }}
       />
-    </motion.span>
+    </span>
   )
 }
 
@@ -100,14 +95,9 @@ export function AnimatedBoxHighlight({
 
   const styles = colorStyles[color]
 
+  // The words show with the rest of the sentence; only the box draws in around them.
   return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.4, delay }}
-      className={`relative inline-block ${className}`}
-    >
+    <span ref={ref} className={`relative inline-block ${className}`}>
       <span className={`${styles.text} font-medium relative z-10 px-1`}>{children}</span>
       {/* Hand-drawn box SVG */}
       <svg
@@ -149,7 +139,7 @@ export function AnimatedBoxHighlight({
           </filter>
         </defs>
       </svg>
-    </motion.span>
+    </span>
   )
 }
 

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Bookshelf } from "@/components/books/bookshelf"
 import { BooksRead } from "@/components/books/books-read"
+import { IconHover3D } from "@/components/ui/icon-3d-hover"
 import { summaries } from "@/lib/books"
 
 export const metadata: Metadata = {
@@ -28,11 +29,15 @@ export default function BooksPage() {
             <h1 className="mb-6 font-serif text-4xl tracking-tight text-white md:text-6xl">
               Jonathan&apos;s <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">Library</span>
             </h1>
-            <p className="mb-4 text-lg text-white/70">Welcome to my book reviews!</p>
-            {/* The intro from the Notion library, point for point. */}
+            <IconHover3D
+              heading="Welcome to my book reviews!"
+              text="I started reading seriously when I was in National Service."
+              className="mb-6 bg-transparent"
+              style={{ backgroundColor: "transparent" }}
+            />
+            {/* The rest of the intro from the Notion library, point for point (the total is the big number beside it). */}
             <ul className="space-y-2.5 text-base leading-relaxed text-white/55 md:text-[17px]">
               {[
-                <>I started reading seriously when I was in National Service. Total Reads: {read} Books.</>,
                 <>My reviews cover a range of genres, including self-help, finance, philosophy and the various sciences.</>,
                 <>I aim to provide insightful summaries and personal reflections on each book.</>,
                 <>I&apos;m more than happy to discuss and hear your thoughts on the books I review.</>,

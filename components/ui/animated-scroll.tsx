@@ -14,7 +14,9 @@ export interface ScrollAdventureSection {
   /** Text half of the screen. Its direct children fade up one after another when the section arrives. */
   content: React.ReactNode
   /** One or two photos, framed at a medium size on the other half. */
-  images: ScrollAdventureImage[]
+  images?: ScrollAdventureImage[]
+  /** Something other than photos for that half (e.g. an animation); shown in a medium frame instead of `images`. */
+  visual?: React.ReactNode
   /** Which half the photos take on wide screens. Alternate it for the split-slide look. */
   imageSide?: "left" | "right"
 }
@@ -32,17 +34,16 @@ const EASE = "cubic-bezier(.7,0,.3,1)"
 
 // Transitions are set inline or in this sheet on purpose: the site's global `* { transition: … }` rule is unlayered,
 // so it outranks Tailwind's transition utilities and would leave the slides jumping instead of moving.
+//
+// Text and photos travel with their half of the screen, so the whole section arrives and leaves as one:
+// - arriving, everything fades and settles together a beat after the slide starts (no line-by-line trickle);
+// - leaving, it stays fully visible until its half is off screen (--sa-hide = the slide time), then resets
+//   out of sight, so nobody watches words vanish from a panel that is still moving.
 const CSS = `
-.sa-copy > * > * { opacity: 0; translate: 0 28px; transition: opacity .7s ease, translate .8s cubic-bezier(.2,.8,.2,1); }
-.sa-live .sa-copy > * > * { opacity: 1; translate: 0 0; }
-.sa-live .sa-copy > * > *:nth-child(1) { transition-delay: .45s; }
-.sa-live .sa-copy > * > *:nth-child(2) { transition-delay: .58s; }
-.sa-live .sa-copy > * > *:nth-child(3) { transition-delay: .71s; }
-.sa-live .sa-copy > * > *:nth-child(4) { transition-delay: .84s; }
-.sa-live .sa-copy > * > *:nth-child(n+5) { transition-delay: .97s; }
-.sa-photo { opacity: 0; scale: .92; transition: opacity .8s ease, scale 1s cubic-bezier(.2,.8,.2,1); }
-.sa-live .sa-photo { opacity: 1; scale: 1; transition-delay: .35s; }
-.sa-live .sa-photo + .sa-photo { transition-delay: .5s; }
+.sa-copy > * > * { opacity: 0; translate: 0 16px; transition: opacity .2s ease var(--sa-hide), translate 0s linear var(--sa-hide); }
+.sa-live .sa-copy > * > * { opacity: 1; translate: 0 0; transition: opacity .55s ease .15s, translate .9s cubic-bezier(.2,.8,.2,1) .15s; }
+.sa-photo { opacity: 0; scale: .96; transition: opacity .2s ease var(--sa-hide), scale 0s linear var(--sa-hide); }
+.sa-live .sa-photo { opacity: 1; scale: 1; transition: opacity .55s ease .15s, scale 1s cubic-bezier(.2,.8,.2,1) .15s; }
 @media (prefers-reduced-motion: reduce) {
   .sa-copy > * > *, .sa-photo { opacity: 1 !important; translate: none !important; scale: none !important; transition: none !important; }
 }
@@ -50,12 +51,20 @@ const CSS = `
 
 /**
  * Full-screen split slides: each section is a text half and a photo half. Scrolling, arrow keys or a swipe move to
- * the next section, the left half sliding up from below while the right half drops in from above; then the photos
- * settle and the text fades up line by line. On phones the photos sit on top and the halves slide in sideways.
+ * the next section, the left half sliding up from below while the right half drops in from above, its photos and text
+ * riding along. The first section slides in the same way when the page opens. On phones the photos sit on top and the
+ * halves slide in sideways.
  */
 export default function ScrollAdventure({ sections, overlay, animTime = 1000, className }: ScrollAdventureProps) {
   const [current, setCurrent] = React.useState(0)
   const [reduced, setReduced] = React.useState(false)
+  // Starts false so the first section renders off screen, then slides in like any other section.
+  const [entered, setEntered] = React.useState(false)
+
+  React.useEffect(() => {
+    const t = window.setTimeout(() => setEntered(true), 80)
+    return () => window.clearTimeout(t)
+  }, [])
   const count = sections.length
   const locked = React.useRef(false)
   const lastWheel = React.useRef(0)
@@ -136,12 +145,24 @@ export default function ScrollAdventure({ sections, overlay, animTime = 1000, cl
     : { transition: `translate ${animTime}ms ${EASE}` }
 
   return (
-    <div className={cn("fixed inset-0 overflow-hidden bg-[#030303]", className)}>
+    <div className={cn("fixed inset-0 overflow-hidden bg-[#030303]", className)} style={{ "--sa-hide": `${animTime}ms` } as React.CSSProperties}>
       <style>{CSS}</style>
       {sections.map((section, i) => {
-        const active = i === current
+        const active = entered && i === current
         const imagesLeft = (section.imageSide ?? "left") === "left"
-        const pair = section.images.length > 1
+        const images = section.images ?? []
+        // Photos and the optional visual share the half: two or more of them sit as a staggered pair.
+        const tiles = images.length + (section.visual ? 1 : 0)
+        const pair = tiles > 1
+        // Photos get a framed card; the visual sits unframed, as part of the backdrop.
+        const tile = (k: number, framed = true) =>
+          cn(
+            "sa-photo relative h-full",
+            framed && "overflow-hidden rounded-2xl shadow-2xl shadow-black/60 ring-1 ring-white/10",
+            pair ? "aspect-[3/4] min-w-0 max-w-[46%] md:h-[min(50vh,440px)] md:max-w-none" : "aspect-[4/5] md:h-[min(62vh,560px)]",
+            pair && k === 1 && "md:translate-y-12",
+            pair && k === 0 && "md:-translate-y-6",
+          )
         // Desktop: whatever sits on the left rises from below, the right half drops from above.
         // Phone: photos (top) come in from the right, text (bottom) from the left.
         const imageMove = active
@@ -168,16 +189,8 @@ export default function ScrollAdventure({ sections, overlay, animTime = 1000, cl
               style={slide}
             >
               <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_50%,rgba(59,130,246,0.10),transparent_70%)]" />
-              {section.images.map((image, k) => (
-                <div
-                  key={image.src}
-                  className={cn(
-                    "sa-photo relative h-full overflow-hidden rounded-2xl shadow-2xl shadow-black/60 ring-1 ring-white/10",
-                    pair ? "aspect-[3/4] min-w-0 max-w-[46%] md:h-[min(50vh,440px)] md:max-w-none" : "aspect-[4/5] md:h-[min(62vh,560px)]",
-                    pair && k === 1 && "md:translate-y-12",
-                    pair && k === 0 && "md:-translate-y-6",
-                  )}
-                >
+              {images.map((image, k) => (
+                <div key={image.src} className={tile(k)}>
                   <img
                     src={image.src}
                     alt={image.alt}
@@ -187,6 +200,7 @@ export default function ScrollAdventure({ sections, overlay, animTime = 1000, cl
                   />
                 </div>
               ))}
+              {section.visual && <div className={tile(images.length, false)}>{section.visual}</div>}
             </div>
 
             <div
